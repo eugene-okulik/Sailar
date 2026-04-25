@@ -1,8 +1,8 @@
 x = 5
 y = 9
-c = ((x + y) / 2)
+z = 4
+c = ((x + y) / 3)
 print(c)
 
-z = 4
 w = pow((x * y * z), 1 / 3)
 print(w)
