@@ -28,7 +28,7 @@
 my_dict = {}
 my_dict["tuple"] = (3, 2.42, True, 'last', 8)
 my_dict["list"] = [1, 3.5, None, 'text', False]
-my_dict["dict"] = {"name": "Ivan", "second_name": "Petrov", "flat": "apartment", "key": "old", "adress": "Lenina" }
+my_dict["dict"] = {"name": "Ivan", "second_name": "Petrov", "flat": "apartment", "key": "old", "adress": "Lenina"}
 my_dict["set"] = {5, False, 78.1, 'text', 42}
 
 # Изменение словаря
