@@ -14,13 +14,13 @@ lists = (list_1, list_2, list_3)
 result = int()
 
 # string_index = list_1.index(": ")
-# value_int = int(list_1[string_index + 1: ]) + 10
+# value_int = int(list_1[string_index + 1:]) + 10
 # result += value_int
 # print(result)
 
 for item in lists:
     string_index = item.index(": ")
-    value_int = int(item[string_index + 1: ]) + 10
+    value_int = int(item[string_index + 1:]) + 10
     result += value_int
 print(result)
 
