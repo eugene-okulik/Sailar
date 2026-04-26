@@ -22,12 +22,12 @@
 my_dict = {}
 my_dict["tuple"] = (3, 2.42, True, 'last')
 my_dict["list"] = [1, 3.5, None, 'text', False]
-my_dict["dict"] = { "kye" : "value"}
-my_dict["set"] = { 5 , False , 78.1 , 'text' }
+my_dict["dict"] = {"kye": "value"}
+my_dict["set"] = {5, False, 78.1, 'text'}
 
 my_dict["list"].append(3)
 my_dict["list"].pop(1)
-my_dict["dict"]["i am a tuple"] = { "number" : 4}
+my_dict["dict"]["i am a tuple"] = {"number": 4}
 my_dict["dict"].pop('kye')
 my_dict["set"].add(None)
 my_dict["set"].pop()
