@@ -34,7 +34,7 @@ my_dict["set"] = {5, False, 78.1, 'text', 42}
 # Изменение словаря
 my_dict["list"].append(3)
 my_dict["list"].pop(1)
-my_dict["dict"]["i am a tuple"] = {"number": 4}
+my_dict["dict"][('i am a tuple', )] = {"number": 4}
 my_dict["dict"].pop('key')
 my_dict["set"].add(None)
 my_dict["set"].pop()
