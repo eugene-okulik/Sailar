@@ -10,6 +10,7 @@
 
 import random
 
+
 def Guess_the_number(number, answer):
     if answer.isdigit():
         answer = int(answer)
@@ -28,8 +29,7 @@ def Guess_the_number(number, answer):
         answer = input('Please enter a number: ')
         return Guess_the_number(number, answer)
 
+
 number = random.randint(1, 10)
 answer = input('Please enter a number: ')
-
 Guess_the_number(number, answer)
-

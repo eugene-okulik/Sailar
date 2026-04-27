@@ -21,6 +21,7 @@ def split_text(lists):
         # value_int = int(item[string_index + 1:]) + 10
         # print(value_int)
 
+
 list_1 = "результат операции: 42"
 list_2 = "результат операции: 54"
 list_3 = "результат работы программы: 209"
