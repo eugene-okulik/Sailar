@@ -13,4 +13,3 @@ for key, value in words.items():
     key *= value
     # print(key, "\n", value)
     print(key)
-
