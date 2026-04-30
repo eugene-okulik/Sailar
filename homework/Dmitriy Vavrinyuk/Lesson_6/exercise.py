@@ -16,7 +16,7 @@ for sentence in sentences:
         sentence = sentence.replace(',', '')
         sentence += "ing,"
     elif '.' in sentence:
-        sentence = sentence.replace(',', '')
+        sentence = sentence.replace('.', '')
         sentence += "ing."
     else:
         sentence += "ing"
