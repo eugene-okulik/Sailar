@@ -7,7 +7,6 @@
 
 initial_sentences = ('Etiam tincidunt neque erat, quis molestie enim imperdiet vel. '
                      'Integer urna nisl, facilisis vitae semper at, dignissim vitae libero')
-
 modife_senteces = []
 
 sentences = initial_sentences.split()

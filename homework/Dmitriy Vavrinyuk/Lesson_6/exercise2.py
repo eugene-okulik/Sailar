@@ -12,6 +12,7 @@ for numb in range(1, 101):
     elif numb % 5 == 0:
         numb = "Buzz"
 
+
     # if numb % 3 == 0:
     #     if numb % 5 == 0:
     #         numb = "FuzzBuzz"
