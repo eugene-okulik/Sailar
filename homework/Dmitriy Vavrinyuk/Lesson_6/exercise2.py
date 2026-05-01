@@ -21,3 +21,4 @@ for numb in range(1, 101):
     # elif numb % 5 == 0:
     #     numb = "Buzz"
     print(numb)
+

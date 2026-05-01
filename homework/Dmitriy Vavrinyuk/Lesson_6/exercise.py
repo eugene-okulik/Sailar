@@ -5,6 +5,7 @@
 # внутри слова. Если после слова идет запятая или точка, этот знак препинания должен идти после того же слова,
 # но уже преобразованного.
 
+
 initial_sentences = ('Etiam tincidunt neque erat, quis molestie enim imperdiet vel. '
                      'Integer urna nisl, facilisis vitae semper at, dignissim vitae libero')
 modife_senteces = []
