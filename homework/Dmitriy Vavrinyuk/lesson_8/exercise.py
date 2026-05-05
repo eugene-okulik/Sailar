@@ -18,6 +18,7 @@ from random import random, randint
 #         salary += int(randint(1, 100))
 #     yield salary, bonus
 #
+#
 # salary = int(input("Enter your start salary: "))
 # bonus = bool(randint(0, 1))
 #
@@ -25,16 +26,17 @@ from random import random, randint
 #     print((f" {salary}, {x[1]} - $'{x[0]}'"))
 
 # Переменные задаются в теле генератора и вращаются в цикле столько раз пока выполняется условие
-def assist(limit = 10):
+def assist(limit=10):
     cont = 1
     total = 0
     while cont <= limit:
         cont += 1
         bonus = bool(randint(0, 1))
         salary = int(input("Enter your salary: "))
-        if bonus == True:
+        if bonus is True:
             total = salary + int(randint(1, 100))
         yield salary, bonus, total
+
 
 for x in assist(5):
     print((f" {x[0]}, {x[1]} - $'{x[2]}'"))

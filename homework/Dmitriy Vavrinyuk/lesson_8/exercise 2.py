@@ -7,9 +7,10 @@
 import sys
 sys.set_int_max_str_digits(100000)
 
+
 def num_fibanacci():
-    num1, num2  = 0, 1
-    sum = 0
+    num1, num2 = 0, 1
+    # sum = 0
     while True:
         # yield sum
         # sum = num1 + num2
@@ -18,6 +19,7 @@ def num_fibanacci():
 
         yield num2
         num1, num2 = num2, num1 + num2
+
 
 count = 1
 for number in num_fibanacci():
@@ -32,3 +34,4 @@ for number in num_fibanacci():
         print(f' Распечатка несколько значений, стотысячное число {number}')
         break
     count += 1
+
