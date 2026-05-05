@@ -34,4 +34,3 @@ for number in num_fibanacci():
         print(f' Распечатка несколько значений, стотысячное число {number}')
         break
     count += 1
-
