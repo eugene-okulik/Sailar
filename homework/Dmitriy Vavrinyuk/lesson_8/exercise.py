@@ -14,6 +14,7 @@ from random import random, randint
 
 # Переменные задаются один раз и генератор вовзрващет 1 раз измененое значение
 
+
 # def assist(salary, bonus):
 #     if bonus == True:
 #         salary += int(randint(1, 100))
@@ -27,6 +28,7 @@ from random import random, randint
 #     print((f" {salary}, {x[1]} - $'{x[0]}'"))
 
 # Переменные задаются в теле генератора и вращаются в цикле столько раз пока выполняется условие
+
 
 def assist(limit=10):
     cont = 1
