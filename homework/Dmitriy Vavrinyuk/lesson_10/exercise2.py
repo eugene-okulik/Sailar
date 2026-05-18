@@ -15,11 +15,12 @@
 #
 # Если есть время и желание погуглить и повозиться, то можно попробовать создать декоратор,
 # который сможет обработать такой код:
-
 # @repeat_me(count=2)
 # def example(text):
 #     print(text)
 # example('print me')
+import functools
+
 
 def universal_function(func):
     def wrapper(*args):
@@ -39,3 +40,18 @@ def function_2(text):
 function_2("finished")
 function_2("finished")
 function_2("finished")
+
+def repeat(n):
+    def decorator(func):
+        print(f'Function {func.__name__} repeat')
+        def wrapper(*args):
+            for x in range(n):
+                func(*args)
+        return wrapper
+    return decorator
+
+@repeat(3)
+def example(text):
+    print(text)
+
+example('print me')
