@@ -42,8 +42,10 @@ function_2("finished")
 function_2("finished")
 function_2("finished")
 
+
 def repeat(n):
     def decorator(func):
+
         print(f'Function {func.__name__} repeat')
         def wrapper(*args):
             for x in range(n):

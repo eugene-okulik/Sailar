@@ -61,8 +61,8 @@ while True:
         user_input_second = float(input("Введите второе число: "))
         if isinstance(user_input_first, float) and isinstance(user_input_second, float):
             pass
-        user_input_operation = input(f'Для проверки домашнего задания введите "Пробел" и нажмите кнопку "Ввод" \n'
-                                     f'Для работы калькулятора введите операцию, из +, -, *, /, ** (для пифогора)\n')
+        user_input_operation = input('Для проверки домашнего задания введите "Пробел" и нажмите кнопку "Ввод" \n'
+                                     'Для работы калькулятора введите операцию, из +, -, *, /, ** (для пифогора)\n')
         if user_input_operation in operation:
             break
     except ValueError:
