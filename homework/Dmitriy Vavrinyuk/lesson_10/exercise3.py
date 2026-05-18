@@ -13,14 +13,15 @@
 # если первое больше второго, то происходит вычитание второго из певрого
 # если второе больше первого - деление первого на второе
 # если одно из чисел отрицательное - умножение
-
 import math
+
 
 def calculat(func):
     def wrapper(first, second, operation):
-        print(f'Вычисление...')
+        print('Вычисление...')
         return func(first, second, operation)
     return wrapper
+
 
 @calculat
 def calc(first, second, operation):
@@ -54,23 +55,18 @@ def calc(first, second, operation):
 operation = ['+', '-', '*', '/', '**', ' ']
 
 while True:
-    print(f'Открыт калькулятор')
+    print('Открыт калькулятор')
     try:
         user_input_first = float(input("Введите первое число: "))
-        if type(user_input_first) == float :
-            pass
         user_input_second = float(input("Введите второе число: "))
-        if type(user_input_second) == float :
+        if isinstance(user_input_first, float) and isinstance(user_input_second, float):
             pass
         user_input_operation = input(f'Для проверки домашнего задания введите "Пробел" и нажмите кнопку "Ввод" \n'
                                      f'Для работы калькулятора введите операцию, из +, -, *, /, ** (для пифогора)\n')
         if user_input_operation in operation:
-            first = user_input_first
-            second = user_input_second
-            operation = user_input_operation
             break
     except ValueError:
         print("Ошибка! Вы ввели не число.")
 
 
-calc(first, second, operation)
+calc(user_input_first, user_input_second, user_input_operation)

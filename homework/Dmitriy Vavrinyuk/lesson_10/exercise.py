@@ -26,4 +26,5 @@ def universal_function():
 def func1():
     print('Function func1')
 
+
 func1()

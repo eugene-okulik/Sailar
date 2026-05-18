@@ -29,13 +29,14 @@ def universal_function(func):
         print(f'Function {func.__name__}, started')
         print(f'Function {func.__name__}, repeat - {counter}')
         return func(*args)
-
     wrapper.count = 0
     return wrapper
+
 
 @universal_function
 def function_2(text):
     print(f'Function {text} \n')
+
 
 function_2("finished")
 function_2("finished")
@@ -50,8 +51,10 @@ def repeat(n):
         return wrapper
     return decorator
 
+
 @repeat(3)
 def example(text):
     print(text)
+
 
 example('print me')
