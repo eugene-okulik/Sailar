@@ -70,10 +70,11 @@ def repeat():
                 func(arg, count)
         return wrapper
     return decorator
-#
-#
+
+
 @repeat()
 def example(text, count):
     print('hello world')
 
-example('print me', count = 3)
+
+example('print me', count=3)

@@ -101,7 +101,7 @@ def calc(first, second, operation):
 
 @calculat
 def calc2(x, y):
-    print(f'Производим вычисление между двумя значениями {x} и {y} ' )
+    print(f'Производим вычисление между двумя значениями {x} и {y} ')
     pass
 
 
