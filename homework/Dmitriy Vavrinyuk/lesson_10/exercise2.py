@@ -21,32 +21,33 @@
 # example('print me')
 import functools
 
-
-def universal_function(func):
-    def wrapper(*args):
-        wrapper.count += 1
-        counter = wrapper.count
-        print(f'Function {func.__name__}, started')
-        print(f'Function {func.__name__}, repeat - {counter}')
-        return func(*args)
-    wrapper.count = 0
-    return wrapper
+# from homework.eugene_okulik.Lesson_8.generator_function import count
 
 
-@universal_function
-def function_2(text):
-    print(f'Function {text} \n')
-
-
-function_2("finished")
-function_2("finished")
-function_2("finished")
+# def universal_function(func):
+#     def wrapper(*args):
+#         wrapper.count += 1
+#         counter = wrapper.count
+#         print(f'Function {func.__name__}, started')
+#         print(f'Function {func.__name__}, repeat - {counter}')
+#         return func(*args)
+#     wrapper.count = 0
+#     return wrapper
+#
+#
+# @universal_function
+# def function_2(text):
+#     print(f'Function {text} \n')
+#
+#
+# function_2("finished")
+# function_2("finished")
+# function_2("finished")
 
 
 def repeat(n):
     def decorator(func):
         def wrapper(*args):
-            print(f'Function {func.__name__} repeat')
             for x in range(n):
                 func(*args)
         return wrapper
@@ -59,3 +60,20 @@ def example(text):
 
 
 example('print me')
+print("\n")
+
+
+def repeat():
+    def decorator(func):
+        def wrapper(arg, count):
+            for i in range(count):
+                func(arg, count)
+        return wrapper
+    return decorator
+#
+#
+@repeat()
+def example(text, count):
+    print('hello world')
+
+example('print me', count = 3)

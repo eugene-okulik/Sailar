@@ -15,16 +15,17 @@
 # print me
 # finished
 
-def universal_function():
-    def func1():
-        return func1
-        print('Hello world')
-    # print('Function universal_function')
+def universal_function(func):
+    def wrapper():
+        print('print me')
+        result = func()
+        return result
+    return wrapper
 
 
 @universal_function
 def func1():
-    print('Function func1')
+    print('finished')
 
 
 func1()
