@@ -39,6 +39,7 @@
 class Book:
     page_material = 'Бумага'
     text = 'Да'
+
     def __init__(self, type, book_tite, author, num_pages, ISBN, reserved=True):
         self.book_tite = book_tite
         self.author = author
@@ -54,6 +55,7 @@ class Textbooks(Book):
         self.school_subject = school_subject
         self.school_class = school_class
         self.exercise = exercise
+
 
 # Книги
 book_1 = Book(False, 'Идиот', 'Достоевский', 500, '123-5-45-7456123', )
@@ -140,6 +142,7 @@ def print_book_all(book):
 #         else:
 #             print(f'Назвние: {item.book_tite}, Автор: {item.author}, страниц: {item.num_pages}, '
 #                   f'предмет {item.school_subject}, класс: {item.school_class}')
+
 
 # унифицрованная фунция фильтрующая данные по пармету Type
 print_book_all(book_1)
