@@ -37,92 +37,110 @@
 
 
 class Book:
-    def __init__(self, page_material, text, book_tite, author, num_pages, ISBN, reserved):
-        self.page_material = page_material
-        self.text = text
+    page_material = 'Бумага'
+    text = 'Да'
+    def __init__(self, type, book_tite, author, num_pages, ISBN, reserved=True, ):
         self.book_tite = book_tite
         self.author = author
         self.num_pages = num_pages
         self.ISBN = ISBN
         self.reserved = reserved
+        self.type = type
 
 
 class Textbooks(Book):
-    def __init__(self, page_material, text, book_tite, author, num_pages, ISBN, reserved, school_subject,
-                 school_class, exercise):
-        super().__init__(page_material, text, book_tite, author, num_pages, ISBN, reserved)
+     def __init__(self, type, book_tite, author, num_pages, ISBN, school_subject='', school_class='', exercise=''):
+        super().__init__(type, book_tite, author, num_pages, ISBN, reserved=True, )
         self.school_subject = school_subject
         self.school_class = school_class
         self.exercise = exercise
 
+# Книги
+book_1 = Book( False, 'Идиот', 'Достоевский', 500, '123-5-45-7456123', )
+book_2 = Book( False, 'Война и мир', 'Толстой', 3500, '123-5-45-7456124')
+book_3 = Book(False,'Мастер и маргарита', 'Булгаков', 1920, '123-5-45-7456345')
+book_4 = Book(False,'Мертые души', 'Гоголь', 1200, '123-5-45-7454513')
+book_5 = Book(False,'Геройнашего времени', 'Лермантов', 1690, '123-5-45-7754151')
 
-book_1 = Book('Бумага', 'Да', 'Идиот', 'Достоевский', 500,
-              '123-5-45-7456123', True)
-book_2 = Book('Картон', 'Нет', 'Война и мир', 'Толстой', 3500,
-              '123-5-45-7456124', False)
-book_3 = Book('Папирус', 'Да', 'Мастер и маргарита', 'Булгаков', 1920,
-              '123-5-45-7456345', False)
-book_4 = Book('Береста', 'Нет', 'Мертые души', 'Гоголь', 1200,
-              '123-5-45-7454513', True)
-book_5 = Book('Пергамент', 'Да', 'Геройнашего времени', 'Лермантов', 1690,
-              '123-5-45-7754151', False)
+# Учебники
+book_6 = Textbooks(True, 'Алгебра', 'Автор 1', 1690, '123-5-45-7754151',
+                   'Математика', '6 класс', True)
+book_7 = Textbooks(True, 'Физика', 'Автор 2', 1200, '123-5-45-7754151',
+                   'Физика', '9 класс', True)
+book_8 = Textbooks(True, 'ИЗО', 'Автор 3', 3500, '123-5-45-7754151',
+                   'Рисование', '3 класс', False)
 
+book_1.reserved=True
+book_2.reserved=True
+book_3.reserved=False
+book_4.reserved=True
+book_5.reserved=False
+book_6.reserved=True
+book_7.reserved=False
+book_8.reserved=False
 
-book_6 = Textbooks('Бумага', 'Да', 'Алгебра', 'Автор 1', 1690,
-                   '123-5-45-7754151', False, 'Математика', '6 класс', True)
-book_7 = Textbooks('Бумага', 'Да', 'Физика', 'Автор 2', 1200,
-                   '123-5-45-7754151', True, 'Физика', '9 класс', True)
-book_8 = Textbooks('Бумага', 'Да', 'ИЗО', 'Автор 3', 3500,
-                   '123-5-45-7754151', False, 'Рисование', '3 класс', False)
-
-
-# library = [book_1, book_2, book_3, book_4, book_5, book_6, book_7, book_8]
-library1 = [book_1, book_2, book_3, book_4, book_5]
-library2 = [book_6, book_7, book_8]
-
-
-# def print(book):
-#     for item in library1:
-#         if item.school_subject is not None:
-#             if item.reserved is True:
-#                 print(f'Назвние: {item.book_tite}, Автор: {item.author}, страниц: {item.num_pages}, '
-#                       f'материал: {item.page_material}, зарезервирована')
-#             else:
-#                 print(f'Назвние: {item.book_tite}, Автор: {item.author}, страниц: {item.num_pages}, '
-#                       f'материал: {item.page_material}')
-#         else:
-#             if item.reserved is True:
-#                 print(f'Назвние: {item.book_tite}, Автор: {item.author}, страниц: {item.num_pages}, '
-#                       f'предмет {item.school_subject}, класс: {item.school_class}, зарезервирована')
-#             else:
-#                 print(f'Назвние: {item.book_tite}, Автор: {item.author}, страниц: {item.num_pages}, '
-#                       f'предмет {item.school_subject}, класс: {item.school_class}')
+# library1 = [book_1, book_2, book_3, book_4, book_5]
+# library2 = [book_6, book_7, book_8]
+# full_library = [book_1, book_2, book_3, book_4, book_5, book_6, book_7, book_8]
 
 
 def print_book(book):
-    for item in library1:
-        if item.reserved is True:
-            print(f'Назвние: {item.book_tite}, Автор: {item.author}, страниц: {item.num_pages}, '
-                  f'материал: {item.page_material}, зарезервирована')
+    if book.type is False:
+        if book.reserved is True:
+            print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
+                  f'материал: {book.page_material}, зарезервирована')
         else:
-            print(f'Назвние: {item.book_tite}, Автор: {item.author}, страниц: {item.num_pages}, '
-                  f'материал: {item.page_material}')
-
-
-def print_textbooks(book):
-    print('\n')
-    for item in library2:
-        if item.reserved is True:
-            print(f'Назвние: {item.book_tite}, Автор: {item.author}, страниц: {item.num_pages}, '
-                  f'предмет {item.school_subject}, класс: {item.school_class}, зарезервирована')
+            print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
+                  f'материал: {book.page_material}')
+    else:
+        if book.reserved is True:
+            print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
+                  f'предмет {book.school_subject}, класс: {book.school_class}, зарезервирована')
         else:
-            print(f'Назвние: {item.book_tite}, Автор: {item.author}, страниц: {item.num_pages}, '
-                  f'предмет {item.school_subject}, класс: {item.school_class}')
+            print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
+                  f'предмет {book.school_subject}, класс: {book.school_class}')
 
 
-# print(library)
-print_book(library1)
-print_textbooks(library2)
+# def print_book(book):
+#     if book.reserved is True:
+#         print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
+#               f'материал: {book.page_material}, зарезервирована')
+#     else:
+#         print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
+#               f'материал: {book.page_material}')
 
-# print(f'Назвние: {book_8.book_tite}, Автор: {book_8.author}, страниц: {book_8.num_pages}, '
-#                       f'предмет {book_8.school_subject}, класс: {book_8.school_class}')
+
+# def print_books(book):
+#     print('\n')
+#     for item in library1:
+#         if item.reserved is True:
+#             print(f'Назвние: {item.book_tite}, Автор: {item.author}, страниц: {item.num_pages}, '
+#                   f'материал: {item.page_material}, зарезервирована')
+#         else:
+#             print(f'Назвние: {item.book_tite}, Автор: {item.author}, страниц: {item.num_pages}, '
+#                   f'материал: {item.page_material}')
+
+
+# def print_textbooks(book):
+#     print('\n')
+#     for item in library2:
+#         if item.reserved is True:
+#             print(f'Назвние: {item.book_tite}, Автор: {item.author}, страниц: {item.num_pages}, '
+#                   f'предмет {item.school_subject}, класс: {item.school_class}, зарезервирована')
+#         else:
+#             print(f'Назвние: {item.book_tite}, Автор: {item.author}, страниц: {item.num_pages}, '
+#                   f'предмет {item.school_subject}, класс: {item.school_class}')
+
+print_book(book_1)
+print_book(book_2)
+print_book(book_3)
+print_book(book_4)
+print_book(book_5)
+print_book(book_6)
+print_book(book_7)
+print_book(book_8)
+
+
+# print_books(library1)
+# print_textbooks(library2)
+# print_books(full_library)
