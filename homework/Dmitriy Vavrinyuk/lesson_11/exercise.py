@@ -84,7 +84,7 @@ book_8.reserved=False
 # full_library = [book_1, book_2, book_3, book_4, book_5, book_6, book_7, book_8]
 
 
-def print_book(book):
+def print_book_all(book):
     if book.type is False:
         if book.reserved is True:
             print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
@@ -110,6 +110,16 @@ def print_book(book):
 #               f'материал: {book.page_material}')
 
 
+# def print_textbook(book):
+#     print('\n')
+#     if book.reserved is True:
+#         print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
+#               f'предмет {book.school_subject}, класс: {book.school_class}, зарезервирована')
+#     else:
+#         print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
+#               f'предмет {book.school_subject}, класс: {book.school_class}')
+
+
 # def print_books(book):
 #     print('\n')
 #     for item in library1:
@@ -131,16 +141,27 @@ def print_book(book):
 #             print(f'Назвние: {item.book_tite}, Автор: {item.author}, страниц: {item.num_pages}, '
 #                   f'предмет {item.school_subject}, класс: {item.school_class}')
 
-print_book(book_1)
-print_book(book_2)
-print_book(book_3)
-print_book(book_4)
-print_book(book_5)
-print_book(book_6)
-print_book(book_7)
-print_book(book_8)
+# унифицрованная фунция фильтрующая данные по пармету Type
+print_book_all(book_1)
+print_book_all(book_2)
+print_book_all(book_3)
+print_book_all(book_4)
+print_book_all(book_5)
+print_book_all(book_6)
+print_book_all(book_7)
+print_book_all(book_8)
 
+# для вызова функции под конкретный тип литерутуры
+# print_book(book_1)
+# print_book(book_2)
+# print_book(book_3)
+# print_book(book_4)
+# print_book(book_5)
+# print_textbook(book_6)
+# print_textbook(book_7)
+# print_textbook(book_8)
 
+# Для работы с списками
 # print_books(library1)
 # print_textbooks(library2)
 # print_books(full_library)
