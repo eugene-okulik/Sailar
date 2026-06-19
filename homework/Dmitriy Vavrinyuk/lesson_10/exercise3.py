@@ -84,11 +84,12 @@ def calculat(func):
         elif first < second:
             operation = '/'
         func(first, second)
-        print(calc(first, second, operation))
+        print(func(first, second, operation))
+        # print(calc(first, second, operation))
     return wrapper
 
-
-def calc(first, second, operation):
+@calculat
+def calc(first, second, operation = ''):
     if operation == '+':
         return first + second
     elif operation == '-':
@@ -99,12 +100,14 @@ def calc(first, second, operation):
         return first / second
 
 
-@calculat
-def calc2(x, y):
-    print(f'Производим вычисление между двумя значениями {x} и {y} ')
-    pass
+# @calculat
+# def calc2(x, y):
+#     calc()
+#     print(f'Производим вычисление между двумя значениями {x} и {y} ')
+#     pass
 
 
 user_input_first = float(input("Введите первое число: "))
 user_input_second = float(input("Введите второе число: "))
-calc2(user_input_first, user_input_second)
+calc(user_input_first, user_input_second)
+# calc2(user_input_first, user_input_second)

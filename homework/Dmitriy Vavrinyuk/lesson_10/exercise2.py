@@ -48,7 +48,7 @@ import functools
 def repeat(n):
     def decorator(func):
         def wrapper(*args):
-            for x in range(n):
+            for _ in range(n):
                 func(*args)
         return wrapper
     return decorator
@@ -66,7 +66,7 @@ print("\n")
 def repeat():
     def decorator(func):
         def wrapper(arg, count):
-            for i in range(count):
+            for _ in range(count):
                 func(arg, count)
         return wrapper
     return decorator
