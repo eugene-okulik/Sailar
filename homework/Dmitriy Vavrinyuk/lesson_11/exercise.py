@@ -39,7 +39,7 @@
 class Book:
     page_material = 'Бумага'
     text = 'Да'
-    def __init__(self, type, book_tite, author, num_pages, ISBN, reserved=True, ):
+    def __init__(self, type, book_tite, author, num_pages, ISBN, reserved=True):
         self.book_tite = book_tite
         self.author = author
         self.num_pages = num_pages
@@ -49,18 +49,18 @@ class Book:
 
 
 class Textbooks(Book):
-     def __init__(self, type, book_tite, author, num_pages, ISBN, school_subject='', school_class='', exercise=''):
-        super().__init__(type, book_tite, author, num_pages, ISBN, reserved=True, )
+    def __init__(self, type, book_tite, author, num_pages, ISBN, school_subject='', school_class='', exercise=''):
+        super().__init__(type, book_tite, author, num_pages, ISBN, reserved=True)
         self.school_subject = school_subject
         self.school_class = school_class
         self.exercise = exercise
 
 # Книги
-book_1 = Book( False, 'Идиот', 'Достоевский', 500, '123-5-45-7456123', )
-book_2 = Book( False, 'Война и мир', 'Толстой', 3500, '123-5-45-7456124')
-book_3 = Book(False,'Мастер и маргарита', 'Булгаков', 1920, '123-5-45-7456345')
-book_4 = Book(False,'Мертые души', 'Гоголь', 1200, '123-5-45-7454513')
-book_5 = Book(False,'Геройнашего времени', 'Лермантов', 1690, '123-5-45-7754151')
+book_1 = Book(False, 'Идиот', 'Достоевский', 500, '123-5-45-7456123', )
+book_2 = Book(False, 'Война и мир', 'Толстой', 3500, '123-5-45-7456124')
+book_3 = Book(False, 'Мастер и маргарита', 'Булгаков', 1920, '123-5-45-7456345')
+book_4 = Book(False, 'Мертые души', 'Гоголь', 1200, '123-5-45-7454513')
+book_5 = Book(False, 'Геройнашего времени', 'Лермантов', 1690, '123-5-45-7754151')
 
 # Учебники
 book_6 = Textbooks(True, 'Алгебра', 'Автор 1', 1690, '123-5-45-7754151',
@@ -70,14 +70,14 @@ book_7 = Textbooks(True, 'Физика', 'Автор 2', 1200, '123-5-45-7754151
 book_8 = Textbooks(True, 'ИЗО', 'Автор 3', 3500, '123-5-45-7754151',
                    'Рисование', '3 класс', False)
 
-book_1.reserved=True
-book_2.reserved=True
-book_3.reserved=False
-book_4.reserved=True
-book_5.reserved=False
-book_6.reserved=True
-book_7.reserved=False
-book_8.reserved=False
+book_1.reserved = True
+book_2.reserved = True
+book_3.reserved = False
+book_4.reserved = True
+book_5.reserved = False
+book_6.reserved = True
+book_7.reserved = False
+book_8.reserved = False
 
 # library1 = [book_1, book_2, book_3, book_4, book_5]
 # library2 = [book_6, book_7, book_8]
