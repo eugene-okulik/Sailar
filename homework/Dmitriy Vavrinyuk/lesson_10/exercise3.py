@@ -88,8 +88,9 @@ def calculat(func):
         # print(calc(first, second, operation))
     return wrapper
 
+
 @calculat
-def calc(first, second, operation = ''):
+def calc(first, second, operation=''):
     if operation == '+':
         return first + second
     elif operation == '-':
