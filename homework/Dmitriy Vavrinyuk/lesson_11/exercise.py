@@ -48,6 +48,14 @@ class Book:
         self.reserved = reserved
         self.type = type
 
+    def print_book(self):
+        if self.reserved is True:
+            print(f'Назвние: {self.book_tite}, Автор: {self.author}, страниц: {self.num_pages}, '
+                  f'материал: {self.page_material}, зарезервирована')
+        else:
+            print(f'Назвние: {self.book_tite}, Автор: {self.author}, страниц: {self.num_pages}, '
+                  f'материал: {self.page_material}')
+
 
 class Textbooks(Book):
     def __init__(self, type, book_tite, author, num_pages, ISBN, school_subject='', school_class='', exercise=''):
@@ -55,6 +63,14 @@ class Textbooks(Book):
         self.school_subject = school_subject
         self.school_class = school_class
         self.exercise = exercise
+
+    def print_book(self):
+        if self.reserved is True:
+            print(f'Назвние: {self.book_tite}, Автор: {self.author}, страниц: {self.num_pages}, '
+                  f'предмет {self.school_subject}, класс: {self.school_class}, зарезервирована')
+        else:
+            print(f'Назвние: {self.book_tite}, Автор: {self.author}, страниц: {self.num_pages}, '
+                  f'предмет {self.school_subject}, класс: {self.school_class}')
 
 
 # Книги
@@ -86,21 +102,21 @@ book_8.reserved = False
 # full_library = [book_1, book_2, book_3, book_4, book_5, book_6, book_7, book_8]
 
 
-def print_book_all(book):
-    if book.type is False:
-        if book.reserved is True:
-            print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
-                  f'материал: {book.page_material}, зарезервирована')
-        else:
-            print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
-                  f'материал: {book.page_material}')
-    else:
-        if book.reserved is True:
-            print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
-                  f'предмет {book.school_subject}, класс: {book.school_class}, зарезервирована')
-        else:
-            print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
-                  f'предмет {book.school_subject}, класс: {book.school_class}')
+# def print_book_all(book):
+#     if book.type is False:
+#         if book.reserved is True:
+#             print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
+#                   f'материал: {book.page_material}, зарезервирована')
+#         else:
+#             print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
+#                   f'материал: {book.page_material}')
+#     else:
+#         if book.reserved is True:
+#             print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
+#                   f'предмет {book.school_subject}, класс: {book.school_class}, зарезервирована')
+#         else:
+#             print(f'Назвние: {book.book_tite}, Автор: {book.author}, страниц: {book.num_pages}, '
+#                   f'предмет {book.school_subject}, класс: {book.school_class}')
 
 
 # def print_book(book):
@@ -144,15 +160,24 @@ def print_book_all(book):
 #                   f'предмет {item.school_subject}, класс: {item.school_class}')
 
 
+book_1.print_book()
+book_2.print_book()
+book_3.print_book()
+book_4.print_book()
+book_5.print_book()
+book_6.print_book()
+book_7.print_book()
+book_8.print_book()
+
 # унифицрованная фунция фильтрующая данные по пармету Type
-print_book_all(book_1)
-print_book_all(book_2)
-print_book_all(book_3)
-print_book_all(book_4)
-print_book_all(book_5)
-print_book_all(book_6)
-print_book_all(book_7)
-print_book_all(book_8)
+# print_book_all(book_1)
+# print_book_all(book_2)
+# print_book_all(book_3)
+# print_book_all(book_4)
+# print_book_all(book_5)
+# print_book_all(book_6)
+# print_book_all(book_7)
+# print_book_all(book_8)
 
 # для вызова функции под конкретный тип литерутуры
 # print_book(book_1)
@@ -160,9 +185,9 @@ print_book_all(book_8)
 # print_book(book_3)
 # print_book(book_4)
 # print_book(book_5)
-# print_textbook(book_6)
-# print_textbook(book_7)
-# print_textbook(book_8)
+# print_book(book_6)
+# print_book(book_7)
+# print_book(book_8)
 
 # Для работы с списками
 # print_books(library1)
