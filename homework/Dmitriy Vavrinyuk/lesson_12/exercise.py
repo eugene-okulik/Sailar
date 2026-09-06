@@ -13,6 +13,7 @@
 # class Storage:
 #     shared_date = {}
 
+
 # Основной класс Цветы
 class Flowers:
     def __init__(self, type, quantity, lifetime, price, color, length, fresh):
@@ -23,6 +24,7 @@ class Flowers:
         self.color = color
         self.length = length
         self.fresh = fresh
+
 
 # Подкласс Розы
 class Rose(Flowers):
@@ -36,6 +38,7 @@ class Rose(Flowers):
     def print_rose(self):
         print(f'Интересующий цветок сорт {self.type}, время жизни цветка {self.lifetime} и стоимость = {self.price}')
 
+
 # Подкласс Дикие цветы
 class Wildflowers(Flowers):
     def __init__(self, type, quantity, lifetime, price, color, length, fresh):
@@ -43,6 +46,7 @@ class Wildflowers(Flowers):
 
     def print_Wildflowers(self):
         print(f'Интересующий цветок сорт {self.type}, время жизни цветка {self.lifetime} и стоимость = {self.price}')
+
 
 # Класс букет
 class Bouquet:
@@ -140,8 +144,8 @@ class Bouquet:
         # Подсчет общей стоимости отфильтрованных цветов
         total_filtered_cost = sum(flower.price * flower.quantity for flower in filtered)
         total_filtered_quantity = sum(flower.quantity for flower in filtered)
-        print(f"Общая стоимость отфильтрованных цветов: {total_filtered_cost} рублей, в количестве {total_filtered_quantity}")
-
+        print(f"Общая стоимость отфильтрованных цветов: {total_filtered_cost} рублей, в "
+              f"количестве {total_filtered_quantity}")
 
     # # Фильтр, по параметрам свежесть, цвет, длина стебля, стоимости
     # def filter_bouquet(self, filter_type, value):
@@ -184,8 +188,6 @@ class Bouquet:
     #     # Подсчет общей стоимости отфильтрованных цветов
     #     total_filtered_cost = sum(flower.price * flower.quantity for flower in filtered)
     #     print(f"Общая стоимость отфильтрованных цветов: {total_filtered_cost} рублей")
-
-
 
 flower_1 = Rose('Пинк Флойд роза', 5, 2, 350, 'Красный', 30, True)
 flower_2 = Rose('Чайная роза', 6, 6, 250, 'Оранжевый', 30, True)
@@ -231,25 +233,25 @@ a = Bouquet(list_flowers)
 a.print_bouquet()
 
 # Фильтр по цвету
-print("\n" + "="*50)
+print("\n" + "=" * 50)
 a.print_filtered_flowers('color', 'Красный')
 
 # Фильтр по длине
-print("\n" + "="*50)
+print("\n" + "=" * 50)
 a.print_filtered_flowers('length', 30)
 
 # Фильтр по стоимости (от 200 до 300 рублей)
-print("\n" + "="*50)
+print("\n" + "=" * 50 )
 a.print_filtered_flowers('price', min_price=200, max_price=300)
 
 # Фильтр по стоимости (дороже 250 рублей)
-print("\n" + "="*50)
+print("\n" + "=" * 50)
 a.print_filtered_flowers('price', min_price=250)
 
 # Фильтр по стоимости (дешевле 200 рублей)
-print("\n" + "="*50)
+print("\n" + "=" * 50)
 a.print_filtered_flowers('price', max_price=200)
 
 # Фильтр по свежести
-print("\n" + "="*50)
+print("\n" + "=" * 50)
 a.print_filtered_flowers('fresh', True)
