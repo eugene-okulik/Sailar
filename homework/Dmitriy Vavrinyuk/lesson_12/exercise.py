@@ -189,6 +189,7 @@ class Bouquet:
     #     total_filtered_cost = sum(flower.price * flower.quantity for flower in filtered)
     #     print(f"Общая стоимость отфильтрованных цветов: {total_filtered_cost} рублей")
 
+
 flower_1 = Rose('Пинк Флойд роза', 5, 2, 350, 'Красный', 30, True)
 flower_2 = Rose('Чайная роза', 6, 6, 250, 'Оранжевый', 30, True)
 flower_3 = Rose('Кустовая роза', 8, 5, 200, 'Красный', 30, False)
@@ -241,7 +242,7 @@ print("\n" + "=" * 50)
 a.print_filtered_flowers('length', 30)
 
 # Фильтр по стоимости (от 200 до 300 рублей)
-print("\n" + "=" * 50 )
+print("\n" + "=" * 50)
 a.print_filtered_flowers('price', min_price=200, max_price=300)
 
 # Фильтр по стоимости (дороже 250 рублей)
