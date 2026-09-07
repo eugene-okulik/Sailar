@@ -202,7 +202,6 @@ class Bouquet:
         # print(f"Общая стоимость отфильтрованных цветов: {total_filtered_cost} рублей, в "
         #       f"количестве {total_filtered_quantity}")
 
-
     # # Фильтр, по параметрам свежесть, цвет, длина стебля, стоимости
     # def filter_bouquet(self, filter_type, value):
     #
