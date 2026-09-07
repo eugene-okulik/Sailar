@@ -106,7 +106,6 @@ class Bouquet:
         #     print("Неизвестный ключ сортировки")
         #     return
 
-
         # Определяем направление сортировки
         reverse_sort = (value == 'Убывание')
 
@@ -194,7 +193,6 @@ class Bouquet:
             print(f"  - {flower.type}: цена {flower.price} руб., "
                   f"длина стебля {flower.length} см, цвет {flower.color}")
 
-
         # Подсчет общей стоимости отфильтрованных цветов
         total_filtered_cost = sum(flower.price for flower in filtered)
         print(f"Общая стоимость отфильтрованных цветов: {total_filtered_cost} рублей, в "
@@ -203,8 +201,6 @@ class Bouquet:
         # total_filtered_quantity = sum(flower.quantity for flower in filtered)
         # print(f"Общая стоимость отфильтрованных цветов: {total_filtered_cost} рублей, в "
         #       f"количестве {total_filtered_quantity}")
-
-
 
 
     # # Фильтр, по параметрам свежесть, цвет, длина стебля, стоимости
@@ -263,43 +259,19 @@ flower_8 = Wildflowers('Гортезия', 4, 1200, 'Белый', 30, True)
 # flower_2.add_item('Чайная', 6)
 # flower_3.add_item('Кустовая', 8)
 
-# list_flowers = [flower_1, flower_2, flower_3, flower_4, flower_5, flower_6, flower_7, flower_8]
-
-# Выводим весь букет
-# print(Storage.shared_date)
-# a = Bouquet(list_flowers)
-# a.print_bouquet()
-#
-# # Фильтруем по цвету
-# print("\n" + "="*50)
-# a.print_filtered_flowers('color', 'Красный')
-#
-# # Фильтруем по длине стебля
-# print("\n" + "="*50)
-# a.print_filtered_flowers('length', 30)
-#
-# # Фильтруем по другому цвету
-# print("\n" + "="*50)
-# a.print_filtered_flowers('color', 'Белый')
-#
-# print("\n" + "="*50)
-# a.print_filtered_flowers('price', '200')
-# print("\n" + "="*50)
-
-
 # Создаем букет
 list_flowers = [flower_1, flower_2, flower_3, flower_4, flower_5, flower_6, flower_7, flower_8]
 a = Bouquet(list_flowers)
 
 # Выводим весь букет
 a.print_bouquet()
-# Выводим сортировку
+# Выводим сортировку по цене
 print("\n" + "=" * 50)
 a.sort_flowers('price', 'Убывание')
-
 print("\n" + "=" * 50)
 a.sort_flowers('price', 'Возрастание')
 
+# Выводим сортировку по сроку жизни
 print("\n" + "=" * 50)
 a.sort_flowers('lifetime', 'Убывание')
 
