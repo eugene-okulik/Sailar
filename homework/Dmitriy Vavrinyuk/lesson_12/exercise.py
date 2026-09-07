@@ -9,6 +9,12 @@
 #
 # Реализовать поиск цветов в букете по каким-нибудь параметрам (например, по среднему времени жизни) (и это тоже метод).
 
+# В классе никогда не может быть параметра quantity. Класс создается для описания одного объекта. Одного объекта не
+# может быть больше чем один. А вот уже таких объектов по одному можно сделать много.
+# То есть flowers = Flowers(quantity=2) - невозможно. Класс - это как спецификация.
+# Ты в одной спецификации описываешь один предмет: оин цветок, одну машину, одну птицу. И по этой спецификации ты их
+# создаешь. И тогда получается flower1 = Flowers(), flower2 = Flowers() - так и получится их много сделать.
+
 # хранилище
 # class Storage:
 #     shared_date = {}
@@ -16,11 +22,10 @@
 
 # Основной класс Цветы
 class Flowers:
-    def __init__(self, type, quantity, lifetime, price, color, length, fresh):
+    def __init__(self, type, lifetime, price, color, length, fresh):
         self.type = type
         self.lifetime = lifetime
         self.price = price
-        self.quantity = quantity
         self.color = color
         self.length = length
         self.fresh = fresh
@@ -28,8 +33,8 @@ class Flowers:
 
 # Подкласс Розы
 class Rose(Flowers):
-    def __init__(self, type, quantity, lifetime, price, color, length, fresh):
-        super().__init__(type, quantity, lifetime, price, color, length, fresh)
+    def __init__(self, type, lifetime, price, color, length, fresh):
+        super().__init__(type, lifetime, price, color, length, fresh)
 
     # def add_item(self, key, value):
     #     Storage.shared_date[key] = value
@@ -41,8 +46,8 @@ class Rose(Flowers):
 
 # Подкласс Дикие цветы
 class Wildflowers(Flowers):
-    def __init__(self, type, quantity, lifetime, price, color, length, fresh):
-        super().__init__(type, quantity, lifetime, price, color, length, fresh)
+    def __init__(self, type, lifetime, price, color, length, fresh):
+        super().__init__(type, lifetime, price, color, length, fresh)
 
     def print_Wildflowers(self):
         print(f'Интересующий цветок сорт {self.type}, время жизни цветка {self.lifetime} и стоимость = {self.price}')
@@ -61,18 +66,63 @@ class Bouquet:
 
         for item in self.bouquet:
             total_sum += item.lifetime
-            cost = item.price * item.quantity
+            cost = item.price
             total_cost += cost
             flowers.append(item.type)
             count += 1
 
         avg_lifetime = round(total_sum / count)
-
+        print(f'Количество цветов {count} шт')
         print(f'Общая стоимость букета: {total_cost} рублей')
         print(f'Состав букета: {", ".join(flowers)}')
         print(f'Среднее время жизни букета: {avg_lifetime} дней')
         # print(f'Стоимость букета состоит из {', '.join(flowers)} и стоять будет {total_cost}, '
         #       f'среднее время жизни букета {avg_cost}')
+
+    # Общая сортировка
+    def sort_flowers(self, key, value):
+        # if key == 'price':
+        #     if value == 'Убывание':
+        #         sort_list = sorted(self.bouquet, key=lambda x: x.price, reverse=True)
+        #     else:
+        #         sort_list = sorted(self.bouquet, key=lambda x: x.price)
+        #
+        #         # Вывод всех полей каждого цветка
+        #     print(f'Сортировка по цене цветка')
+        #     for flower in sort_list:
+        #          print(f"  - {flower.type}, Цена: {flower.price}, Время жизни: {flower.lifetime}")
+        #
+        # elif key == 'lifetime':
+        #     if value == 'Убывание':
+        #         sort_list = sorted(self.bouquet, key=lambda x: x.lifetime, reverse=True)
+        #     else:
+        #         sort_list = sorted(self.bouquet, key=lambda x: x.lifetime)
+        #
+        #         # Вывод всех полей каждого цветка
+        #     print(f'Сортировка по сроку жизни цветка')
+        #     for flower in sort_list:
+        #         print(f"  - {flower.type}, Цена: {flower.price}, Время жизни: {flower.lifetime}")
+        # else:
+        #     print("Неизвестный ключ сортировки")
+        #     return
+
+
+        # Определяем направление сортировки
+        reverse_sort = (value == 'Убывание')
+
+        # Сортируем по нужному ключу
+        if key == 'price':
+            sort_list = sorted(self.bouquet, key=lambda x: x.price, reverse=reverse_sort)
+        elif key == 'lifetime':
+            sort_list = sorted(self.bouquet, key=lambda x: x.lifetime, reverse=reverse_sort)
+        else:
+            print("Неизвестный ключ сортировки")
+            return
+
+        # Выводим результаты
+        print(f"Сортировка по {key} ({value}):")
+        for i, flower in enumerate(sort_list, 1):
+            print(f"{i}. {flower.type} - цена: {flower.price}, жизнь: {flower.lifetime} дней")
 
     # Фильтр по цвету
     def filter_by_color(self, color):
@@ -115,6 +165,7 @@ class Bouquet:
 
         # Метод для вывода информации отфильтрованных цветов
     def print_filtered_flowers(self, filter_type, value=None, min_price=None, max_price=None):
+        count = 0
         if filter_type == 'price':
             filtered = self.filter_by_price(min_price, max_price)
             if min_price is not None and max_price is not None:
@@ -138,14 +189,23 @@ class Bouquet:
             return
 
         for flower in filtered:
-            print(f"  - {flower.type}: {flower.quantity} шт., цена {flower.price} руб., "
+            count += 1
+            # print(flower)
+            print(f"  - {flower.type}: цена {flower.price} руб., "
                   f"длина стебля {flower.length} см, цвет {flower.color}")
 
+
         # Подсчет общей стоимости отфильтрованных цветов
-        total_filtered_cost = sum(flower.price * flower.quantity for flower in filtered)
-        total_filtered_quantity = sum(flower.quantity for flower in filtered)
+        total_filtered_cost = sum(flower.price for flower in filtered)
         print(f"Общая стоимость отфильтрованных цветов: {total_filtered_cost} рублей, в "
-              f"количестве {total_filtered_quantity}")
+              f"количестве {count}")
+        # total_filtered_cost = sum(flower.price * flower.quantity for flower in filtered)
+        # total_filtered_quantity = sum(flower.quantity for flower in filtered)
+        # print(f"Общая стоимость отфильтрованных цветов: {total_filtered_cost} рублей, в "
+        #       f"количестве {total_filtered_quantity}")
+
+
+
 
     # # Фильтр, по параметрам свежесть, цвет, длина стебля, стоимости
     # def filter_bouquet(self, filter_type, value):
@@ -190,19 +250,20 @@ class Bouquet:
     #     print(f"Общая стоимость отфильтрованных цветов: {total_filtered_cost} рублей")
 
 
-flower_1 = Rose('Пинк Флойд роза', 5, 2, 350, 'Красный', 30, True)
-flower_2 = Rose('Чайная роза', 6, 6, 250, 'Оранжевый', 30, True)
-flower_3 = Rose('Кустовая роза', 8, 5, 200, 'Красный', 30, False)
-
-flower_4 = Wildflowers('Василек', 10, 10, 125, 'Синий', 15, True)
-flower_5 = Wildflowers('Ромашка', 15, 12, 100, 'Белый', 15, False)
-flower_6 = Wildflowers('Лилия', 1, 5, 350, 'Белый', 15, True)
+flower_1 = Rose('Пинк Флойд роза', 2, 450, 'Красный', 30, True)
+flower_2 = Rose('Чайная роза', 6, 350, 'Оранжевый', 30, True)
+flower_3 = Rose('Кустовая роза', 5, 200, 'Красный', 30, False)
+flower_4 = Wildflowers('Василек', 10, 125, 'Синий', 15, True)
+flower_5 = Wildflowers('Ромашка', 12, 100, 'Белый', 15, False)
+flower_6 = Wildflowers('Лилия', 5, 600, 'Белый', 15, True)
+flower_7 = Wildflowers('Тюльпан', 13, 475, 'Белый', 15, False)
+flower_8 = Wildflowers('Гортезия', 4, 1200, 'Белый', 30, True)
 
 # flower_1.add_item('Пинк Флойд', 3)
 # flower_2.add_item('Чайная', 6)
 # flower_3.add_item('Кустовая', 8)
 
-list_flowers = [flower_1, flower_2, flower_3, flower_4, flower_5, flower_6]
+# list_flowers = [flower_1, flower_2, flower_3, flower_4, flower_5, flower_6, flower_7, flower_8]
 
 # Выводим весь букет
 # print(Storage.shared_date)
@@ -227,15 +288,27 @@ list_flowers = [flower_1, flower_2, flower_3, flower_4, flower_5, flower_6]
 
 
 # Создаем букет
-list_flowers = [flower_1, flower_2, flower_3, flower_4, flower_5, flower_6]
+list_flowers = [flower_1, flower_2, flower_3, flower_4, flower_5, flower_6, flower_7, flower_8]
 a = Bouquet(list_flowers)
 
 # Выводим весь букет
 a.print_bouquet()
+# Выводим сортировку
+print("\n" + "=" * 50)
+a.sort_flowers('price', 'Убывание')
+
+print("\n" + "=" * 50)
+a.sort_flowers('price', 'Возрастание')
+
+print("\n" + "=" * 50)
+a.sort_flowers('lifetime', 'Убывание')
 
 # Фильтр по цвету
 print("\n" + "=" * 50)
 a.print_filtered_flowers('color', 'Красный')
+
+print("\n" + "=" * 50)
+a.print_filtered_flowers('color', 'Белый')
 
 # Фильтр по длине
 print("\n" + "=" * 50)
