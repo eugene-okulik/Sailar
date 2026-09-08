@@ -9,6 +9,11 @@
 #
 # Реализовать поиск цветов в букете по каким-нибудь параметрам (например, по среднему времени жизни) (и это тоже метод).
 
+# хранилище
+# class Storage:
+#     shared_date = {}
+
+
 # Основной класс Цветы
 class Flowers:
     def __init__(self, type, lifetime, price, color, length, fresh):
@@ -24,6 +29,10 @@ class Flowers:
 class Rose(Flowers):
     def __init__(self, type, lifetime, price, color, length, fresh):
         super().__init__(type, lifetime, price, color, length, fresh)
+
+    # def add_item(self, key, value):
+    #     Storage.shared_date[key] = value
+    #     # print(Storage.shared_date)
 
     def print_rose(self):
         print(f'Интересующий цветок сорт {self.type}, время жизни цветка {self.lifetime} и стоимость = {self.price}')
@@ -42,31 +51,36 @@ class Wildflowers(Flowers):
 class Bouquet:
     def __init__(self, bouquet):
         self.bouquet = bouquet
+        self._calc_bouquet()
 
-    def print_bouquet(self):
-        total_sum = 0
-        count = 0
-        flowers = []
-        total_cost = 0
+    def _calc_bouquet(self):
+        self.flowers = []
+        self.count = 0
+        self.total_cost = 0
+        self.total_lifetime = 0
+        self.total_sum = 0
 
         for item in self.bouquet:
-            total_sum += item.lifetime
             cost = item.price
-            total_cost += cost
-            flowers.append(item.type)
-            count += 1
+            self.total_cost += cost
+            self.flowers.append(item.type)
+            self.count += 1
+            self.total_sum += item.lifetime
 
-        avg_lifetime = round(total_sum / count)
-        print(f'Количество цветов {count} шт')
-        print(f'Общая стоимость букета: {total_cost} рублей')
-        print(f'Состав букета: {", ".join(flowers)}')
-        print(f'Среднее время жизни букета: {avg_lifetime} дней')
-        # print(f'Стоимость букета состоит из {', '.join(flowers)} и стоять будет {total_cost}, '
-        #       f'среднее время жизни букета {avg_cost}')
+        self.avg_lifetime = round(self.total_sum / self.count)
+
+    def print_bouquet(self):
+        print(f'Количество цветов {self.count} шт')
+        print(f'Общая стоимость букета: {self.total_cost} рублей')
+        print(f'Состав букета: {", ".join(self.flowers)}')
+        return self.flowers, self.total_cost, self.count, self.total_sum
+
+    def lifetime_bouquet(self):
+        print("\n" + "=" * 50)
+        print(f'Cреднее время жизни букета {self.avg_lifetime}')
 
     # Общая сортировка
     def sort_flowers(self, key, value):
-
         # Определяем направление сортировки
         reverse_sort = (value == 'Убывание')
 
@@ -159,7 +173,6 @@ class Bouquet:
         print(f"Общая стоимость отфильтрованных цветов: {total_filtered_cost} рублей, в "
               f"количестве {count}")
 
-
 flower_1 = Rose('Пинк Флойд роза', 2, 450, 'Красный', 30, True)
 flower_2 = Rose('Чайная роза', 6, 350, 'Оранжевый', 30, True)
 flower_3 = Rose('Кустовая роза', 5, 200, 'Красный', 30, False)
@@ -175,6 +188,8 @@ a = Bouquet(list_flowers)
 
 # Выводим весь букет
 a.print_bouquet()
+a.lifetime_bouquet()
+
 # Выводим сортировку по цене
 print("\n" + "=" * 50)
 a.sort_flowers('price', 'Убывание')
