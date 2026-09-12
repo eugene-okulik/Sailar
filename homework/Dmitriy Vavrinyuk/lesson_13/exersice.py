@@ -27,11 +27,13 @@ print(f'Текущее время - {today_midnight}')
 # Подготовка переменных
 PATTERN = r"(\d{4}.\d{2}.\d{2})\s*(\d{2}.\d{1,2}.\d{1,2}.\d{6})"
 
+
 # Поиск и чтение файла по строчкл
 def read_file():
     with open(test_path, 'r') as data_file:
         for line in data_file:
             yield line
+
 
 #  Открытие файла по строчное сравнение по условию
 with open(test_path, 'r', encoding='utf-8') as new_file:
