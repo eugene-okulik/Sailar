@@ -62,4 +62,3 @@ join `lessons` l  on l.id = m.lesson_id
 join `subjects` sub on sub.id = l.subject_id
 where s.second_name = 'Vavrinyuk'
 order by l.title, b.title;
-
