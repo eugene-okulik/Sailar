@@ -1,0 +1,65 @@
+-- Вывод инфомрации для проверки
+select * from students order by id desc
+select * from `groups` where title = 'Магический питон'
+select * from `groups` order by id desc limit 3
+select * from `books` order by id desc limit 3
+select * from `subjects` order by id desc limit 10
+select * from `lessons` order by id desc limit 10
+select * from `marks` order by id desc limit 10
+
+--  Создайте студента (student)
+insert into students (name, second_name, group_id) values ('Dmitriy', 'Vavrinyuk', 25003)
+update `students` set group_id = 25003 where second_name = 'Vavrinyuk'
+-- Создайте несколько книг (books) и укажите, что ваш созданный студент взял их
+insert into books (title, taken_by_student_id)
+values ('Покемоноведение', 23238), ('Спирицизм', 23238)
+
+-- Создайте группу (group) и определите своего студента туда
+insert into `groups` (title, start_date, end_date) values ('23180', 'sep 2026', 'oct 2026')
+update `groups` set title = 'Магический питон' where id = 25003
+
+--  Создайте несколько учебных предметов (subjects)
+insert into subjects (title)
+values ('Покемология'), ('Окультизм')
+
+--  Создайте по два занятия для каждого предмета (lessons)
+insert into lessons (title, subject_id)
+values ('Урок как приручить покемона', 23471), ('Кормление покемонов', 23471),
+('Начертание рун', 23470), ('Чтение заклятий', 23470)
+
+--  Поставьте своему студенту оценки (marks) для всех созданных вами занятий
+insert into marks (value, lesson_id, student_id)
+values (4, 76991, 23238), (3, 76990, 23238), (5, 76989, 23238), (4, 76988, 23238)
+
+--  Все оценки студента
+select s.name, s.second_name, s.group_id, m.value
+from students s
+join `marks` m
+on s.id = m.student_id
+where student_id = 23238
+
+--  Все книги, которые находятся у студента
+select s.name, s.second_name, s.group_id, b.title
+from students s
+join `books` b
+on s.id = b.taken_by_student_id
+where s.second_name = 'Vavrinyuk' ;
+
+--  Для вашего студента выведите всё, что о нем есть в базе: группа, книги, оценки с названиями занятий и предметов (всё одним запросом с использованием Join)
+select
+    s.name,
+    s.second_name,
+    g.title  as group_title,
+    b.title  as book_title,
+    l.title  as lesson_title,
+    sub.title as subject_title,
+    m.value  as mark_value
+from students s
+join `groups` g   on g.id = s.group_id
+join `books` b    on b.taken_by_student_id = s.id
+join `marks` m    on m.student_id = s.id
+join `lessons` l  on l.id = m.lesson_id
+join `subjects` sub on sub.id = l.subject_id
+where s.second_name = 'Vavrinyuk'
+order by l.title, b.title;
+
