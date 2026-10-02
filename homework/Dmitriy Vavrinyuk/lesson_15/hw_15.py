@@ -25,7 +25,7 @@ print(print_cursor)
 
 # -- Создайте несколько книг (books) и укажите, что ваш созданный студент взял их
 cursor.executemany("insert into books (title, taken_by_student_id) values (%s, %s)",
-                   [('Покемоноведение', student_id),('Спирицизм', student_id)])
+                   [('Покемоноведение', student_id), ('Спирицизм', student_id)])
 # mydb.commit()
 
 # Проверка
@@ -78,17 +78,17 @@ les4 = cursor.lastrowid
 
 # mydb.commit()
 
-cursor.execute(f"select * from lessons order by id desc limit 10")
+cursor.execute("select * from lessons order by id desc limit 10")
 print_cursor = cursor.fetchall()
 print(print_cursor)
 
 # -- Поставьте своему студенту оценки (marks) для всех созданных вами занятий
 cursor.executemany("insert into marks (value, lesson_id, student_id) values (%s, %s, %s)",
                    [
-                    (4, les1, student_id),
-                    (3, les2, student_id),
-                    (5, les3, student_id),
-                    (4, les4, student_id),
+                       (4, les1, student_id),
+                       (3, les2, student_id),
+                       (5, les3, student_id),
+                       (4, les4, student_id),
                    ])
 
 # cursor.executemany("insert into marks (value, lesson_id, student_id) values (%s, %s, %s)",
@@ -99,17 +99,17 @@ cursor.executemany("insert into marks (value, lesson_id, student_id) values (%s,
 #                     (4, 1, student_id)
 #                    ])
 
-cursor.execute(f"select * from marks order by id desc limit 10")
+cursor.execute("select * from marks order by id desc limit 10")
 print_cursor = cursor.fetchall()
 print(print_cursor)
 
 # --  Все оценки студента
 cursor.execute("select s.name, s.second_name, s.group_id, m.value "
-                 "from students s "
-                 "join marks m on s.id = m.student_id "
-                 "where s.id = %s "
-                 "order by m.id desc limit 10",
-                 (student_id,))
+               "from students s "
+               "join marks m on s.id = m.student_id "
+               "where s.id = %s "
+               "order by m.id desc limit 10",
+               (student_id,))
 print_cursor = cursor.fetchall()
 print(print_cursor)
 
@@ -124,23 +124,22 @@ print_cursor = cursor.fetchall()
 print(print_cursor)
 
 cursor.execute("""
-    select
-        s.name,
-        s.second_name,
-        g.title   as group_title,
-        b.title   as book_title,
-        sub.title as subject_title,
-        l.title   as lesson_title,
-        m.value   as mark_value
-    from students s
-    left join `groups` g   on g.id = s.group_id
-    left join `books` b    on b.taken_by_student_id = s.id
-    left join `marks` m    on m.student_id = s.id
-    left join `lessons` l  on l.id = m.lesson_id
-    left join `subjects` sub on sub.id = l.subject_id
-    where s.id = %s
-    order by l.title, b.title
-""", (student_id,))
+               select s.name,
+                      s.second_name,
+                      g.title   as group_title,
+                      b.title   as book_title,
+                      sub.title as subject_title,
+                      l.title   as lesson_title,
+                      m.value   as mark_value
+               from students s
+                        left join `groups` g on g.id = s.group_id
+                        left join `books` b on b.taken_by_student_id = s.id
+                        left join `marks` m on m.student_id = s.id
+                        left join `lessons` l on l.id = m.lesson_id
+                        left join `subjects` sub on sub.id = l.subject_id
+               where s.id = %s
+               order by l.title, b.title
+               """, (student_id,))
 # print(cursor.fetchall())
 
 rows = cursor.fetchall()
