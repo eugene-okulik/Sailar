@@ -56,8 +56,8 @@ sub1 = cursor.lastrowid
 cursor.execute("insert into subjects (title) values (%s)", ('Окультизм',))
 sub2 = cursor.lastrowid
 
-lessons = ['Урок как приручить покемона', 'Кормление покемонов', 'Начертание рун', 'Чтение заклятий']
-print(lessons[0])
+# lessons = ['Урок как приручить покемона', 'Кормление покемонов', 'Начертание рун', 'Чтение заклятий']
+# print(lessons[0])
 
 # cursor.executemany("insert into lessons (title, subject_id) values (%s, %s)",
 #                    [
@@ -67,15 +67,29 @@ print(lessons[0])
 #     (lessons[3], sub2),
 # ])
 
-cursor.execute("insert into lessons (title, subject_id) values (%s, %s)", (lessons[0], sub1))
-les1 = cursor.lastrowid
-cursor.execute("insert into lessons (title, subject_id) values (%s, %s)", (lessons[1], sub1))
-les2 = cursor.lastrowid
-cursor.execute("insert into lessons (title, subject_id) values (%s, %s)", (lessons[2], sub2))
-les3 = cursor.lastrowid
-cursor.execute("insert into lessons (title, subject_id) values (%s, %s)", (lessons[3], sub2))
-les4 = cursor.lastrowid
+# cursor.execute("insert into lessons (title, subject_id) values (%s, %s)", (lessons[0], sub1))
+# les1 = cursor.lastrowid
+# cursor.execute("insert into lessons (title, subject_id) values (%s, %s)", (lessons[1], sub1))
+# les2 = cursor.lastrowid
+# cursor.execute("insert into lessons (title, subject_id) values (%s, %s)", (lessons[2], sub2))
+# les3 = cursor.lastrowid
+# cursor.execute("insert into lessons (title, subject_id) values (%s, %s)", (lessons[3], sub2))
+# les4 = cursor.lastrowid
 
+lessons_data = [('Урок как приручить покемона', sub1),
+                ('Кормление покемонов',         sub1),
+                ('Начертание рун',              sub2),
+                ('Чтение заклятий',             sub2),
+                ]
+
+lesson_ids = {}
+for title, sub_id in lessons_data:
+    cursor.execute(
+        "insert into lessons (title, subject_id) values (%s, %s)",
+        (title, sub_id)
+    )
+    lesson_ids[title] = cursor.lastrowid
+print(lesson_ids)
 # mydb.commit()
 
 cursor.execute("select * from lessons order by id desc limit 10")
@@ -85,19 +99,11 @@ print(print_cursor)
 # -- Поставьте своему студенту оценки (marks) для всех созданных вами занятий
 cursor.executemany("insert into marks (value, lesson_id, student_id) values (%s, %s, %s)",
                    [
-                       (4, les1, student_id),
-                       (3, les2, student_id),
-                       (5, les3, student_id),
-                       (4, les4, student_id),
+                       (4, lesson_ids['Урок как приручить покемона'], student_id),
+                       (3, lesson_ids['Кормление покемонов'], student_id),
+                       (5, lesson_ids['Начертание рун'], student_id),
+                       (4, lesson_ids['Чтение заклятий'], student_id),
                    ])
-
-# cursor.executemany("insert into marks (value, lesson_id, student_id) values (%s, %s, %s)",
-#                    [
-#                     (4, 1, student_id),
-#                     (3, 2, student_id),
-#                     (5, 1, student_id),
-#                     (4, 1, student_id)
-#                    ])
 
 cursor.execute("select * from marks order by id desc limit 10")
 print_cursor = cursor.fetchall()
